@@ -39,7 +39,10 @@ jobs:
       run: |
         sudo apt-get update -y
         sudo apt-get install -y curl
-        curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/install.sh | sudo sh
+        curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/install.sh -o install-trivy.sh
+        chmod +x install-trivy.sh
+        sudo ./install-trivy.sh
+
 
     - name: Trivy FS Scan
       run: trivy fs --format table -o fs-report.json .
