@@ -126,7 +126,7 @@ jobs:
             file: ./Dockerfile
             push: true
             tags: |
-              ${{ secrets.DOCKERHUB_USERNAME }}/my-java-app:latest
+              ${{ secrets.DOCKERHUB_USERNAME }}/my-java-app:${GITHUB_RUN_NUMBER}
     
    
   
