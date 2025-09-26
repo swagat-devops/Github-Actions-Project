@@ -48,12 +48,6 @@ jobs:
     - name: Trivy FS Scan
       run: trivy fs --format table -o fs-report.json .
 
-    # ✅ Install Gitleaks (from apt repo is okay, it's in Ubuntu repos)
-    - name: Install Gitleaks
-      run: |
-        sudo apt-get update -y
-        sudo apt-get install -y gitleaks
-
     - name: Gitleaks Code Scan
       run: gitleaks detect --source . --report-path gitleaks-report.json --report-format json
 
