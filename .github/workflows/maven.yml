@@ -38,13 +38,8 @@ jobs:
     - name: Trivy Installation
       run: |
         sudo apt-get update -y
-        sudo apt-get install -y wget gnupg lsb-release
-        wget -qO - https://aquasecurity.github.io/trivy-repo/deb/public.key | \
-          gpg --dearmor | sudo tee /usr/share/keyrings/trivy.gpg > /dev/null
-        echo "deb [signed-by=/usr/share/keyrings/trivy.gpg] https://aquasecurity.github.io/trivy-repo/deb jammy main" | \
-          sudo tee /etc/apt/sources.list.d/trivy.list
-        sudo apt-get update -y
-        sudo apt-get install -y trivy
+        sudo apt-get install -y curl
+        curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/install.sh | sudo sh
 
     - name: Trivy FS Scan
       run: trivy fs --format table -o fs-report.json .
